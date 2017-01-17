@@ -3,14 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: blog | Website Test</title>
+  <title>About my home network | Website Test</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Website Test">
-<meta property="og:url" content="http://new.andrewsiemen.com/tags/blog/index.html">
+  <meta name="description" content="I kind of want to go into my home network setup. Nothing too in-depth, but enough to give some of my more technically-inclined readers something to chew on.
+The backbone of my current network setup is">
+<meta property="og:type" content="article">
+<meta property="og:title" content="About my home network">
+<meta property="og:url" content="http://new.andrewsiemen.com/2014/01/23/about-my-home-network/index.html">
 <meta property="og:site_name" content="Website Test">
+<meta property="og:description" content="I kind of want to go into my home network setup. Nothing too in-depth, but enough to give some of my more technically-inclined readers something to chew on.
+The backbone of my current network setup is">
+<meta property="og:updated_time" content="2017-01-17T22:44:06.727Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Website Test">
+<meta name="twitter:title" content="About my home network">
+<meta name="twitter:description" content="I kind of want to go into my home network setup. Nothing too in-depth, but enough to give some of my more technically-inclined readers something to chew on.
+The backbone of my current network setup is">
   
     <link rel="alternate" href="/atom.xml" title="Website Test" type="application/atom+xml">
   
@@ -63,39 +70,71 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/01/17/first-post-hexo/" class="archive-article-date">
-  <time datetime="2017-01-17T22:24:00.000Z" itemprop="datePublished">Jan 17</time>
+        <section id="main"><article id="post-about-my-home-network" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/01/23/about-my-home-network/" class="article-date">
+  <time datetime="2014-01-23T12:52:58.000Z" itemprop="datePublished">2014-01-23</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/01/17/first-post-hexo/">First post - Hexo!</a>
+    <h1 class="article-title" itemprop="name">
+      About my home network
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>I kind of want to go into my home network setup. Nothing too in-depth, but enough to give some of my more technically-inclined readers something to chew on.</p>
+<p>The backbone of my current network setup is my pair of ESXi servers. They’re both old Dell desktops that have been repurposed with installs of ESXi version 5.1.</p>
+<p>Every good network needs a naming scheme in order to keep track of which machine is which. Some places use geographic location and machine name tags (eg. htn-ad-524-23 for Houghton branch, administrative building, room 524, machine number 23), some use names that are vaguely familiar or follow some sort of theme (I happen to know one particular business up here in the UP uses the Star Trek universe as a source for machine names, and I know another uses Homestar Runner characters). I decided on using character names from the popular Disney movie series The Lion King, mostly arbitrarily (but also because the first machine that I named was my first server, Rafiki, and the naming scheme just kind of stuck).</p>
+<p>The first of my ESXi servers, named Mufasa, is a Dell Optiplex 755 with 8GB of RAM and a Core 2 Duo E8400. This machine runs all of my Linux virtual machines, including my SSH bastion host (Timon), my web/DNS server (Pumbaa, who is hosting among other things the blog you’re looking at right now!), my E-mail server (Kovu), my file server (Sarafina), and direct download box (Kiara). All of these servers are running CentOS 6.4 (or 6.5 on some of the newer machines). Mufasa is also going to host a Windows 2008 R2 domain controller for my experimentation with multi-master replication, once I get it set up.</p>
+<p>My second ESXi server is named Scar, and he’s a Dell Vostro desktop with 7GB of RAM (yes, 7GB, it was as much DDR2 RAM as I had lying around) and a Core2Quad Q6600. This server is running Windows VMs, including a Windows Server 2k8R2 DC (Shenzi) and the Windows 7 VM that I use for managing both ESXi boxes (Sarabi). I have plans to implement a Windows Server 2k12 R2 box to get myself familiar with its new features, but my classes and work have me busy most of the time.</p>
+<p>Oh, and Scar is connected to a Linksys WRT54G running dd-WRT in bridged client mode so I can have him in a physically different location from Mufasa (across the house). Why? Mostly because I could. Also because running a wire to Scar would’ve been very unsightly for my living arrangement (not to mention a tremendous pain in the rear).</p>
+<p>Questions about how I have something set up, or want more information? Drop a comment below.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://new.andrewsiemen.com/2014/01/23/about-my-home-network/" data-id="ciy247jbj000361bc3o9nbp0r" class="article-share-link">Share</a>
+      
+      
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/01/23/printing-in-linux/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Printing in Linux
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/01/23/first-post-about-me-and-this-space/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">First post - about me</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 </section>
         

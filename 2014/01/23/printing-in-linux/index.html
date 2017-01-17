@@ -3,14 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: blog | Website Test</title>
+  <title>Printing in Linux | Website Test</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Website Test">
-<meta property="og:url" content="http://new.andrewsiemen.com/tags/blog/index.html">
+  <meta name="description" content="My laptop is currently running Arch Linux with Cinnamon as a frontend. My printer is an HP OfficeJet F4480 that claimed to have out-of-the-box capabilities with most distributions of Linux.
+Originally">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Printing in Linux">
+<meta property="og:url" content="http://new.andrewsiemen.com/2014/01/23/printing-in-linux/index.html">
 <meta property="og:site_name" content="Website Test">
+<meta property="og:description" content="My laptop is currently running Arch Linux with Cinnamon as a frontend. My printer is an HP OfficeJet F4480 that claimed to have out-of-the-box capabilities with most distributions of Linux.
+Originally">
+<meta property="og:updated_time" content="2017-01-17T22:44:06.727Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Website Test">
+<meta name="twitter:title" content="Printing in Linux">
+<meta name="twitter:description" content="My laptop is currently running Arch Linux with Cinnamon as a frontend. My printer is an HP OfficeJet F4480 that claimed to have out-of-the-box capabilities with most distributions of Linux.
+Originally">
   
     <link rel="alternate" href="/atom.xml" title="Website Test" type="application/atom+xml">
   
@@ -63,39 +70,76 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/01/17/first-post-hexo/" class="archive-article-date">
-  <time datetime="2017-01-17T22:24:00.000Z" itemprop="datePublished">Jan 17</time>
+        <section id="main"><article id="post-printing-in-linux" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/01/23/printing-in-linux/" class="article-date">
+  <time datetime="2014-01-23T13:05:37.000Z" itemprop="datePublished">2014-01-23</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/01/17/first-post-hexo/">First post - Hexo!</a>
+    <h1 class="article-title" itemprop="name">
+      Printing in Linux
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>My laptop is currently running Arch Linux with Cinnamon as a frontend. My printer is an HP OfficeJet F4480 that claimed to have out-of-the-box capabilities with most distributions of Linux.</p>
+<p>Originally, I found that to not be true. I tried plugging it in and assuming it would work (silly me, this isn’t Ubuntu!), and of course it didn’t. A few software installs later, I realized that I hadn’t even installed CUPS. D’oh!</p>
+<p>So I ran a <strong>pacman -S cups</strong> and Pacman happily installed all of the dependencies for Apple’s old Common Unix Printing System, and then the system itself. That wasn’t enough; according to the fantastic Arch Wiki I also needed the hp-lib package in order to install HP-specific drivers. So I have Pacman do that for me as well, then I try to run the utility and the installer can’t find the PPD .gz file.</p>
+<p>A half hour of wild goose chases later, I come across the hp-lib package source designed for Gentoo. A PPD file is a PPD file, no matter what distro you’re running, so I downloaded the tarball, extracted it, and pulled the necessary PPD file from the tarball, sticking it into <em>/usr/share/cups/model</em> obediently as the wiki page told me to.<em>
+</em></p>
+<p>Still nothing.</p>
+<p>At this point I’m kind of irritated, but I take note of the error that the hp-lib TUI tells me - something to the tune of being unable to connect to the server.</p>
+<p>My thought: “what are you talking about of course my server is runn… oooohhhhhhh”. Lightbulb hit me. CUPS was installed, but the moron running the server didn’t start the service. Double d’oh!</p>
+<p>Ran a <strong>sudo systemctl start cups.service</strong> and re-ran the hp-lib tool. No issues. Printed a test page with no problems. Promptly did a <strong>sudo systemctl enable cups.service</strong> so I don’t have to worry about this again.</p>
+<p>BONUS LIFEHACK:</p>
+<p>That test page that I printed came out pretty darn crappy looking. The colored portioned all looked good, but the black-and-white parts looked like garbage. I knew for a fact (from being on the Windows side of my laptop) that my cartridge had plenty of ink left, so I went searching on the internet and came across a pretty easy way to un-gunk a printer cartridge.</p>
+<p>Step 1: Get water nice and hot in your sink.<br>Step 2: Fill sink up 1/8 of way with hot water.<br>Step 3: Dunk printer cartridge head in the water. Let it sit there for a few minutes.<br>Step 4: Shake the cartridge around under the water until you start to see ink coming out of it.<br>Step 5: Dry cartridge head with lint-free towel and replace in printer. Print test page.<br>Step 6: ???<br>Step 7: Profit!</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://new.andrewsiemen.com/2014/01/23/printing-in-linux/" data-id="ciy247jdj000n61bccu2c1p6m" class="article-share-link">Share</a>
+      
+      
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/01/30/my-love-of-keepass/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Software I enjoy: KeePass
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/01/23/about-my-home-network/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">About my home network</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 </section>
         

@@ -102,7 +102,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://new.andrewsiemen.com/2017/01/17/first-post-hexo/" data-id="ciy23qjmx00002dbcxrb4yyfy" class="article-share-link">Share</a>
+      <a data-url="http://new.andrewsiemen.com/2017/01/17/first-post-hexo/" data-id="ciy247jck000961bc3m0qb9wh" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
@@ -149,7 +149,494 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://new.andrewsiemen.com/2017/01/17/hello-world/" data-id="ciy23qjn600012dbc0a60d77r" class="article-share-link">Share</a>
+      <a data-url="http://new.andrewsiemen.com/2017/01/17/hello-world/" data-id="ciy247jcp000b61bcz9pyer42" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-cve-2015-0235-or-why-i-started-worrying-immediately-and-learned-to-give-up-the-ghost" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/01/31/cve-2015-0235-or-why-i-started-worrying-immediately-and-learned-to-give-up-the-ghost/" class="article-date">
+  <time datetime="2015-01-31T18:21:58.000Z" itemprop="datePublished">2015-01-31</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/01/31/cve-2015-0235-or-why-i-started-worrying-immediately-and-learned-to-give-up-the-ghost/">CVE-2015-0235, or: why I started worrying immediately and learned to give up the &amp;quot;Ghost&amp;quot;</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Long title is long.</p>
+<p>So there’s this major security vulnerability out this week that has been given the CVE number of <strong>CVE-2015-0235.</strong> Because this is a long and kinda hard-to-pronounce-quickly name, many security researchers have given it an adorable name, similar to “Shellshock” and “Heartbleed” before it. This one has been code-named <strong>Ghost</strong>.</p>
+<p>So what exactly is Ghost?</p>
+<p>You can read more about it <a href="http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2015-0235" target="_blank" rel="external">here</a> (and, for the layman, there’s a simpler explanation <a href="https://nakedsecurity.sophos.com/2015/01/29/the-ghost-vulnerability-what-you-need-to-know/" target="_blank" rel="external">here</a>). Basically, there’s a bug in a function called __nss_hostname_digits_dots() which allows the a heap-based buffer overflow which will allow an attacker to write (and execute) arbitrary code into memory with the permissions of the process running the function.  Under normal and unextrodinary circumstances, this only affects Linux (and maybe some other flavors of Unix) users, and doesn’t affect OS X, Windows, Android, or iOS.</p>
+<p>Seems like it’s no big deal and it’s a run-of-the-mill security “vulnerability”, right?</p>
+<p>Well, it would be that way, if it wasn’t being used by a DNS-related system call that we all know and love (and shouldn’t be using because it’s outdated) called gethostbyname(), which happens to reside in the standard C library (glibc). You know, that library that lots and lots of programs are compiled against, including good ol’ granddaddy process #1. That’s right, this bug means there’s a vulnerability in the init process, which runs as a daemon and has God-permissions over the entire system.</p>
+<p><strong>Oh, crap.</strong></p>
+<p>Not to worry! This vulnerability has quickly been patched and the affected services have been recompiled without this vulnerability built in. Just run a full-system update through your package manager (assuming your distro has provided a patch upstream, which at the time of this writing at least RHEL and Ubuntu have done) and restart any affected services.<br>Wait, I said earlier that this vulnerability affects init. This means you’re going to have to restart init. This means restarting your server. Y’know, that server with 3 years of continuous uptime?</p>
+<p><strong>Sadface</strong>.</p>
+<p>Well, which would you rather have? 3 years of continuous uptime (impressive), or knowing for a fact that your system is safe from being pwned for the time being (security)? A bragging right vs potentially losing your job. Hard choice.</p>
+<p>Yeah. If you’re reading this and you haven’t done a full-system update and reboot of your Unix-flavored system (not Mac OS X) within the past month, <strong>stop reading this blog and update your systems. Seriously. Do it.</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://new.andrewsiemen.com/2015/01/31/cve-2015-0235-or-why-i-started-worrying-immediately-and-learned-to-give-up-the-ghost/" data-id="ciy247jbu000561bcgpntn3nv" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-phantom-user-on-arch-using-lvm-and-luks-part-the-first" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/12/22/phantom-user-on-arch-using-lvm-and-luks-part-the-first/" class="article-date">
+  <time datetime="2014-12-22T04:37:25.000Z" itemprop="datePublished">2014-12-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Hello everyone! It’s been quite a while since I’ve last updated this website; I’ve been busy graduating from University and moving out to North Carolina to start my new job (I’ll do a more personal blog post at a later time detailing my thoughts on everything about this). I’ll try to stay more on top of this blog, I promise!</p>
+<p>Lots has changed; I’m still running <strong>an</strong> ESXi server, but it’s no longer the Dell Optiplex that it was before (it’s actually an old Mac Pro!) and it’s not doing nearly as much as it used to; now that I have a ‘big people job’ and a little bit more dispensable income I’ve moved most of my services off to VPSes (including this blog you’re reading right now!). It just makes more sense to me. I’ll show all of my home network changes soon enough for those that are interested (for whatever reason).</p>
+<p>So. On to the topic du jour. This is going to be long and kind of rambly.</p>
+<p>The topic for today was inspired by one of my coworkers; he’s running Funtoo on a ThinkPad X1 Carbon, and in order to get to any of his stuff (home directory, in particular) he has to log in as the root user, unlock the home partition, mount it, <em>then</em> log in as himself.<br>“If a bad guy somehow manages to guess my user’s password, he won’t have any of my files; he’ll just have a ‘dummy user’ instead” was his reasoning for this.<br>I thought this was brilliant, so I set off to do this myself on a shiny might-as-well-be-new Lenovo ThinkPad T420 that I picked up for a great price on eBay.</p>
+<p>I didn’t see any of the commands he ran when he did this, I just had a good idea of the methodology behind it; encrypt home directory and mount it manually. The details of implementation were up to me.</p>
+<p>Let’s get started, shall we?</p>
+<p>So first I had to decide what OS I wanted to throw onto this laptop. I originally considered Gentoo because I have been playing with it in a virtual machine and am liking all of the stuff that it can do, but ultimately I decided that I didn’t want to have to wait three hours to compile a software package and all of its dependencies, and all of their dependencies… yadda yadda. So I decided to go back to my old friend Arch; still has the minimalistic “install it from scratch, kind of” mentality, but with a quicker package installation time. Priorities.</p>
+<p>(side note: I’m gonna at least try to install Linux from scratch at some point. Just because.)</p>
+<p>So there were a couple of attempts at installing a GPT scheme on the hard drive, but a little bit of Googling told me that the motherboards of these older ThinkPads, despite having a “UEFI-flavored BIOS” on them, are unable to read/boot from GPTs. Curses.</p>
+<p>Then I started reading up on this fancy “LUKS on LVM” methodology. Basically, you create two partitions on your hard drive (/dev/sda1 and /dev/sda2, in my case). You use the smaller partition (sda1) for your /boot partition, because it needs to remain unencrypted for the BIOS to be able to read from it. Then you split the larger partition (sda2) into pieces using LVM. <em>Then</em> what you can do is encrypt each of those LVM pieces (called Logical Volumes) separately using dm-crypt (LUKS). You can then choose to decrypt some or all of those partitions as the kernel boots up, or manually after boot-time.<br>Plus, because you only need two physical hard disk partitions, it will play nicely with the MBR partition table that I had to use to get the disk to boot, but I could have as many ‘partitions’ as I wanted through the use of LVM.</p>
+<p>Perfect.</p>
+<p>So I set off, using parted to create the MBR and the two partitions (I could’ve used fdisk, but I was still in a “install it like Gentoo!” mentality for some reason). Then comes the fun part; creating the LVM volumes and encrypting them.</p>
+<p>Ideally you’d want to scramble the partition you were going to use for LVM before doing this (by dd’ing from /dev/random to /dev/sda2, for instance), but because this was a hard drive that I had no data on previously I will lose no sleep over not doing so.</p>
+<p>Step 1 - create the LVM setup.<br>-Create the ‘physical volume’ (tell the LVM service that this drive is going to have some LVM bits on it),<br>-Create the ‘volume group’ (a ‘container’ for each of the LVM chunks. I think of this in terms of being a “virtual hard drive” because it’s kind of partitioned in the same way), and<br>-Create the ‘logical volumes’ (the actual ‘partitions’ or the ‘LVM chunks’ that we’re going to use to actually store the data).</p>
+<p><pre>lvm pvcreate /dev/sda2<br>lvm vgcreate lvm /dev/sda2<br>lvm lvcreate -L 50G -n lvroot lvm<br>lvm lvcreate -L 16G -n swap lvm<br>lvm lvcreate -l 100%FREE -n home lvm<br></pre><br>My partitioning scheme for the LVM logical volumes: 50G for /, 16G for swap (8GB of RAM in the machine and I like the having-double-the-amount-of-RAM-for-swap-space methodology), and the rest of the open space for /home.</p>
+<p>Next, we encrypt the device we’re going to use for the root directory.</p>
+<p><pre>cryptsetup luks /dev/lvm/lvroot<br></pre><br>It will ask for a password. You’re going to have to enter this password every time the computer starts up, so make it secure but don’t make it unmanagable (a 50-character password, while awesomely secure, is also rather inconvenient to enter every time you have to reboot).</p>
+<p>Now, open the freshly encrypted device, create a filesystem on it, and mount it to /mnt to continue installing Arch. The guide I was using suggested using reiserfs, and I’m not really sure why; I just used ext4.</p>
+<p><pre>cryptsetup open /dev/lvm/lvroot root #this mounts the unencrypted device at /dev/mapper/root<br>mkfs.ext4 /dev/mapper/root<br>mount /dev/mapper/root /mnt<br></pre><br>Then you mount /dev/sda1 to /mnt/boot, pacstrap, arch-chroot, etc as usual.</p>
+<p>Next change comes when it comes to the creation of the initial ramdisk and modifying mkinitcpio.conf. You’ll want to make sure that you have <strong>lvm2</strong> and <strong>encrypt</strong> in your <em>hooks</em> section, and you’ll want to make sure that they’re placed <em>before</em> the <strong>filesystem</strong> hook. This way you make sure that LVM and dm-crypt are started before the kernel tries to load the filesystem.</p>
+<p><pre>(chrooted)/etc/mkinitcpio.conf</pre></p>
+<p><pre>HOOKS=”… lvm2 encrypt … filesystems …”<br></pre><br>Next comes the configuration of a bootloader. I used GRUB2, so I can’t say for sure whether this procedure will work on Syslinux or Gummiboot or even LILO, so YMMV.</p>
+<p>Install the grub package, install GRUB to /dev/sda, and edit the (chrooted)/etc/default/grub file as follows:</p>
+<p><pre>GRUB_CMDLINE_LINUX_DEFAULT=”cryptdevice=/dev/lvm/lvroot:root root=/dev/mapper/root resume=/dev/lvm/swap”<br></pre><br>Then generate the GRUB config file.</p>
+<p>Finally, you’ll want to configure your filesystem table so the OS knows what to mount and where to find it:</p>
+<p><pre>/dev/mapper/root    /               ext4            defaults        0 1</pre></p>
+<p>/dev/sda1           /boot           ext2            defaults        0 2</p>
+<p>/dev/lvm/swap       none            swap            sw              0 0</p>
+<p><br>So why are we listing /dev/mapper/root instead of /dev/lvm/lvroot? Because of the mkinitcpio hook that we added earlier, the lvroot logical volume is decrypted and mounted to /dev/mapper before the kernel ever gets to fstab. And if you think about it, that’s the way it has to be; the kernel can’t read /etc/fstab if everything under / is still encrypted, can it? ;)</p>
+<p>Some of you are currently shouting at the screen “WHAT?! Why do you have your swapspace unencrypted?! That’s basically asking for trouble!” Yep. I know. I don’t have a good excuse for it, either; this is just the process that <em>I</em> followed. We’ll get to fancyness with swap in a later post. Hold your horses.</p>
+<p>At this point, you’ll want to reboot into your system. You’ll be prompted for your password for the root partition early on; enter it and you’ll be presented with a login prompt. Log in as the root user.</p>
+<p>Now, some of you are probably thinking “Hey, wait a second! He hasn’t even touched the /home LVM logical volume! What a scam and a waste of my time, I’m gonna go read slashdot and <em>actually</em> learn something!”</p>
+<p>Whoa, there, cowboy. We’re getting to that.</p>
+<p>Next, create your “everyday” user; we don’t want to go masquerading around our system as the root user, do we? That’s a <em>very</em> bad idea. Add this user to group ‘wheel’, install ‘sudo’ using pacman, and turn on sudo rights for the ‘wheel’ group using ‘visudo’ (you can even make it passwordless sudo if you want, but keep in mind that anyone that gets to your account basically has root privileges without ever needing to know the password. Weigh the options). Make sure that you create the user’s /home directory as you do this.</p>
+<p>Next, finally, go ahead and encrypt the logical volume which is going to be used for the /home directory and actually mount it to /home:</p>
+<p><pre>cryptsetup luksFormat /dev/lvm/home<br>cryptsetup open /dev/lvm/home home<br>mount /dev/mapper/home /home<br></pre><br>Physically re-create the user’s home directory and chown it to username:username. Then, logout and log back in as the user. All should seem right with the world. As a test, touch a file in that directory. Why? you’ll see in a second.</p>
+<p>Now, go ahead and reboot the machine you’re on. Decrypt the / directory, but don’t decrypt the /home directory. Log in as your user. ‘ls’ your home directory. What do you see?</p>
+<p>Nothing. You see absolutely nothing, because your touch’d file is safely encrypted within the /dev/lvm/home logical volume. You’ve successfully set up a ‘dummy’ user; congratulations! :)</p>
+<p>Now, you can ‘cd’ out of your home directory (important, otherwise the OS will assume the directory is ‘in use’ and won’t mount anything on top of it), sudo su - to the root user, unencrypt the /dev/lvm/home device, and mount the device to ‘/home’. Then, exit out of the root session and ‘cd’ back home. Voila! All of your file(s) are magically back.</p>
+<p>Now, what about that swap issue we were talking about? What if we want hibernate to work with an encrypted swap partition? And that user that we created still has sudo permissions (possibly even paswordless sudo, like in my personal case), that’s still a security risk, how do we mitigate that?</p>
+<p>That will have to come in a future blog post. Stay tuned, everyone. :)</p>
+<p>/cliffhanger</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://new.andrewsiemen.com/2014/12/22/phantom-user-on-arch-using-lvm-and-luks-part-the-first/" data-id="ciy247jd4000k61bcm326124p" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-whats-the-big-deal-about-sed-anyways" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/03/12/whats-the-big-deal-about-sed-anyways/" class="article-date">
+  <time datetime="2014-03-12T15:34:53.000Z" itemprop="datePublished">2014-03-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/03/12/whats-the-big-deal-about-sed-anyways/">What&#39;s the big deal about sed, anyways?</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>There comes a time in any young Linux SysAdmin’s life where they have to learn the importance of shell scripting in Bash. One of the more useful commands is one called <strong>sed</strong> (<strong>s</strong>tream <strong>ed</strong>itor).</p>
+<p>sed is designed to take an input (either from stdin or from a file), edit the text of the input, and throw the edited version back out at you (which can then be redirected from stdout to a file). Unlike a text editor, it does this in real time (which means it can be scripted, which is super nifty).</p>
+<p>There’s far more about sed than I could explain in this blog post, but Bruce Barnett does a fantastic job of explaining what sed is and what it can do on <a href="http://www.grymoire.com/Unix/Sed.html" target="_blank" rel="external">this page</a> of his website.</p>
+<p>I find myself using sed all the time because of how powerful it is and all of the things it can do.</p>
+<p>Recently I was faced with the task of taking a log file and converting it into a CSV format. The format of the logfile was the output from ipmitool on an Ubuntu server and the format looked like this:</p>
+<pre>...data data data...
+Mon Mar 10 02:50:06 EDT 2014
+ESM Frt I/O Temp | 31h | ok  | 12.0 | 28 degrees C
+ESM CPU 1 Temp   | 32h | ns  |  3.1 | No Reading
+ESM CPU 2 Temp   | 33h | ns  |  3.2 | No Reading
+ESM Riser Temp   | 34h | ok  | 16.0 | 35 degrees C
+ESM CPU 1 Temp   | 35h | ok  |  3.1 | 34 degrees C
+ESM CPU 2 Temp   | 36h | ok  |  3.2 | 33 degrees C
+BP Bottom Temp   | 03h | ok  | 15.1 | 29 degrees C
+BP Top Temp      | 02h | ok  | 15.1 | 29 degrees C
+Mon Mar 10 02:55:06 EDT 2014
+ESM Frt I/O Temp | 31h | ok  | 12.0 | 28 degrees C
+ESM CPU 1 Temp   | 32h | ns  |  3.1 | No Reading
+ESM CPU 2 Temp   | 33h | ns  |  3.2 | No Reading
+ESM Riser Temp   | 34h | ok  | 16.0 | 35 degrees C
+ESM CPU 1 Temp   | 35h | ok  |  3.1 | 38 degrees C
+ESM CPU 2 Temp   | 36h | ok  |  3.2 | 39 degrees C
+BP Bottom Temp   | 03h | ok  | 15.1 | 29 degrees C
+BP Top Temp      | 02h | ok  | 15.1 | 29 degrees C
+...data data data...</pre>
+In particular we are interested in the dates and the temperatures of each CPU to graph temperatures over time. This log lives in a file called data.txt and we want it to output to a file called data.csv.
+
+Let's see what we can do with this.
+
+First, we want to search for anything with 'Mon' in the name (to filter out the date, if you had a logfile with multiple days instead of just 'monday' you could use the month or even the year number, it just has to be something that is unique to the date string) or for the ID numbers of the sensors that we want to filter. This can be accomplished using grep:
+<pre>grep -E '^Mon*|35h|36h' data.txt</pre>
+Note: the -E allows us to use extended regular expressions, basically allowing us to search for multiple things at once.
+
+This turns the above logfile into:
+<pre>
+...data data data...
+Mon Mar 10 02:50:06 EDT 2014
+ESM CPU 1 Temp   | 35h | ok  |  3.1 | 34 degrees C
+ESM CPU 2 Temp   | 36h | ok  |  3.2 | 33 degrees C
+Mon Mar 10 02:55:06 EDT 2014
+ESM CPU 1 Temp   | 35h | ok  |  3.1 | 38 degrees C
+ESM CPU 2 Temp   | 36h | ok  |  3.2 | 39 degrees C
+...data data data...
+</pre>
+
+<p>Next we want to just take the temperature data from the above output. This is where sed comes in.</p>
+<p>Basically, we want to delete everything up to (and including) the final pipe delimiter and the space immediately after it. The sed command to do this might look similar to the following:</p>
+<pre>sed -r 's/^.+\| //g'</pre>
+
+<p>The -r says to read from a file, which I now realize is a bit unnecessary as the input is being piped in from grep, but the -r was there when I was testing the individual portions because I was reading from the data.txt file, and the script works with the -r option. It works for me, but YMMV.<br>Next comes the regular expression. This is arguably the most important part of the sed command because this is what is going to find the text that you want to replace. Without having this part correct, the sed command is basically rendered useless (or, worse, destructive to other parts of the file that you want to keep intact). General rule: if you’re experimenting with sed and regex, make a copy of the original file. There are some flags that you can set that will overwrite the source file.<br>Anyways, breaking this part down a bit:<br>s/tolookfor/toreplacewith/g says to search for “tolookfor” and to replace it with “toreplacewith.” The ‘g’ at the end means to do this globally, or to change all occurances found.<br>“^.+| “ means to start at the beginning of each string (^), look for any number of occurrences of any character (.+) until you get to a pipe and a space (the backslash is there to escape the pipe character).<br>There is nothing in between the next two slashes, which is the equivalent of s/toolookfor//g. This basically means to replace anything that you find with nothing (ie, delete everything that you find).</p>
+<p>The output of this command when fed the previous output looks like this:</p>
+<pre>
+...data data data...
+Mon Mar 10 02:50:06 EDT 2014
+34 degrees C
+33 degrees C
+Mon Mar 10 02:55:06 EDT 2014
+38 degrees C
+39 degrees C
+...data data data...
+</pre>
+
+<p>We’re starting to get somewhere.</p>
+<p>In some cases, you would want to leave the “degrees C” part in this file, but I already know that this is going to be the unit used (and am going to put it on the graph), so I want to find and get rid of that part, which is what the following sed command does:</p>
+<pre>sed -r 's/ degrees C//g'</pre>
+
+<p>After this second sed command this is what we’re left with:</p>
+<pre>
+...data data data...
+Mon Mar 10 02:50:06 EDT 2014
+34
+33
+Mon Mar 10 02:55:06 EDT 2014
+38
+39
+...data data data...
+</pre>
+
+<p>Now all that is left to do is to turn this into a CSV. This is accomplished using the nifty <strong>paste</strong> command. This is originally used to take two files and join them together using a user-specified delimiter, but can be used to combine things from standard input as well, as follows:</p>
+<pre>paste -d, - - -</pre>
+-d, means to use a comma as a delimiter, and the three dashes mean to read from standard input three times. As the input is delimited by a newline, it will read in three lines at a time and delimit them with commas.
+
+Finally, we have output that looks like this:
+<pre>
+...data data data...
+Mon Mar 10 02:50:06 EDT 2014,34,33
+Mon Mar 10 02:55:06 EDT 2014,38,39
+...data data data...
+</pre>
+
+<p>Combining all of these commands, we end up with the following one-liner:</p>
+<p><pre>grep -E ‘^Mon*|35h|36h’ data.txt | sed -r ‘s/^.+| //g’ | sed -r ‘s/ degrees C//g’ | paste -d, - - - &gt; data.csv</pre><br>(this text might wrap around, but it was originally written as a single line and does work this way)</p>
+<p>This will parse an entire logfile into a CSV that can easily be imported into a program such as Excel for graphing.</p>
+<p>Sed is a powerful command, and it can do lots more than I’ve listed here. For more info on sed, check out the link a bit further up.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://new.andrewsiemen.com/2014/03/12/whats-the-big-deal-about-sed-anyways/" data-id="ciy247je6000x61bcr6t2orkx" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-home-network-now-with-visio" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/03/12/home-network-now-with-visio/" class="article-date">
+  <time datetime="2014-03-12T13:45:09.000Z" itemprop="datePublished">2014-03-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/03/12/home-network-now-with-visio/">Home Network - now with Visio!</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>I had a couple of requests on my previous entry about this to add in a Visio diagram. By popular request, here’s a visual representation of what my network looks like (click the image for a larger picture):</p>
+<p><a href="http://blog.andrewsiemen.com/wp-content/uploads/2014/03/home.jpg" target="_blank" rel="external"><img src="http://blog.andrewsiemen.com/wp-content/uploads/2014/03/home.jpg" alt="My home network"></a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://new.andrewsiemen.com/2014/03/12/home-network-now-with-visio/" data-id="ciy247jcx000f61bckf2dy9nt" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-disowning-a-process" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/02/24/disowning-a-process/" class="article-date">
+  <time datetime="2014-02-24T15:55:31.000Z" itemprop="datePublished">2014-02-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/02/24/disowning-a-process/">Disowning a process</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>…for those times where a process has besmirched your honor so badly that you want nothing to do with it ever again.</p>
+<p>Picked up this tip a few weeks ago and it’s been super useful so far.<br>Let’s say that you start a process (typically a GUI process) from your terminal emulator. All is well and good.<br>Suddenly, you have a need to type in some terminal commands at the same time you’re  running this program. Being a good and competent Linux user, you simply issue the keyboard command to send the ‘suspend’ signal and then send the program to the background. No problems there.<br>What if you then decide that you want to run another process/program from the same terminal? (you could start another terminal, but if you’re like me screen real-estate is limited and precious, and tabbed terminals aren’t really your style)<br>Or, what if you want to close that terminal for whatever reason?</p>
+<p>This is where the ‘disown’ command comes in. You can run this command on a process that you sent to the background and it will ‘detatch’ itself from that terminal so that you can do other useful things with it (or close it entirely).</p>
+<p>Syntax looks like this:</p>
+<pre>
+(command)
+ctl-Z
+bg
+disown
+</pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://new.andrewsiemen.com/2014/02/24/disowning-a-process/" data-id="ciy247jc5000661bcdyou7swr" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-redshift-tip-clearing-the-effects" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/02/05/redshift-tip-clearing-the-effects/" class="article-date">
+  <time datetime="2014-02-05T05:41:48.000Z" itemprop="datePublished">2014-02-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/02/05/redshift-tip-clearing-the-effects/">Redshift tip - clearing the effects</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>As discussed in a previous blog post, I greatly enjoy Redshift on my laptop running Arch Linux. However, because it’s Arch Linux, sometimes I have to logout and log back in, in order to make a change ‘stick.’ If I have Redshift running, and I log back in and start the program using</p>
+<p><pre>redshift-gtk</pre><br>Then the effect on my screen persists even if I toggle Redshift off. Annoying.</p>
+<p>To get around this, close out of redshift-gtk in the tray, then run this command to clear the effects of redshift:</p>
+<p><pre>redshift -x</pre><br>And then restart redshift-gtk. This will cause the software to behave as intended.</p>
+<p>EDIT: mental note: when using &lt;pre&gt; tags, go into ‘text’ mode otherwise WordPress takes the tag as normal text.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://new.andrewsiemen.com/2014/02/05/redshift-tip-clearing-the-effects/" data-id="ciy247jdr000p61bc2up72b54" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-reverse-natural-scrolling-in-subtle" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/02/03/reverse-natural-scrolling-in-subtle/" class="article-date">
+  <time datetime="2014-02-03T18:00:20.000Z" itemprop="datePublished">2014-02-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/02/03/reverse-natural-scrolling-in-subtle/">Reverse &amp;quot;Natural&amp;quot; Scrolling in Linux</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>On Arch I recently decided to switch from the Cinnamon desktop environment over to the Subtle window manager. My reasons for this are multiple and varied, and I’ll get into that in another post.</p>
+<p>This is mostly for my own personal reference.</p>
+<p>I am a big fan of the ‘reverse scrolling’ that you find on Apple laptops. It just makes sense to me. However, in my switchover from Cinnamon to Subtle I lost this functionality.</p>
+<p>I found my answer on the Arch forums, which linked me to <a href="http://who-t.blogspot.com/2011/09/natural-scrolling-in-synaptics-driver.html" target="_blank" rel="external">this page</a>. Basically:</p>
+<p><pre>xinput list (to find the device name)<br>xinput set-button-map &lt;devicename&gt; 1 2 3 5 4</pre><br>This will give you the reverse-scrolling functionality that mimics OS X.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://new.andrewsiemen.com/2014/02/03/reverse-natural-scrolling-in-subtle/" data-id="ciy247jdw000r61bcqppd9sfd" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-software-i-enjoy-f-lux-redshift-easy-eyes" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/02/02/software-i-enjoy-f-lux-redshift-easy-eyes/" class="article-date">
+  <time datetime="2014-02-02T05:44:05.000Z" itemprop="datePublished">2014-02-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/02/02/software-i-enjoy-f-lux-redshift-easy-eyes/">Software I enjoy: f.lux / Redshift / Easy Eyes</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>If you are anything like me, you stay up rather late on your computer doing various random tasks like updating servers, writing scripts, browsing reddit (yes you do, don’t even try to lie). Or, you’re on your smartphone all night texting people, snapchatting people, and browsing reddit (seriously.)<br>Then, next thing you know, it’s 3am and you’re not even tired.<br>What gives?</p>
+<p>A good chunk of why you’re up so late could be because of that computer display sitting in front of you or your phone display sitting right next to you. And it doesn’t even have anything to do with what you’re doing on the device.</p>
+<p>You see, when you’re on your phone or on your computer, the display you’re looking at gives off a very neutral color spectrum to give you the best color representation possible. This is great if you’re trying to look at pictures of lolcats in the middle of the day.</p>
+<p>However, at night, your eyes respond very poorly to the vividness of the colors you’re seeing. In particular, the blue light on your screen causes your body to think that you’re looking at sunlight, which triggers the response of keeping you awake for longer.</p>
+<p>The folks over at f.lux have done a whole pile of research on the subject (seriously. Click <a href="http://justgetflux.com/research.html" target="_blank" rel="external">this link</a> to look at what they have to say about it. They even cite a whole bunch of papers, too) and have come up with a solution: a software that will adjust your display based on the time of day.</p>
+<p>It’s simple. You input your latitude and longitude (or zip code, for the actual f.lux program), and f.lux will adjust your display based on what time it is in your location; during the day you get the full spectrum of colors at your disposal just as you’re supposed to see, and at night f.lux will automatically ‘warm up’ your display, replacing the harsh blue tints with more subtle red and orange ones. This is much easier on the eyes at night and, according to f.lux, will allow you to fall asleep more easily.<br>And if you find yourself needing to do some photo editing or in general find yourself in a situation where you want to see all colors as represented, you can easily toggle f.lux on and off (although, be warned, you’re likely going to be blinded if you flip it off suddenly)</p>
+<p>It takes some getting used to, but as of right now I rely on this tool to give me a better chance of going to bed at a decent hour; I did some experimentation myself and discovered that by installing this software and letting it do it’s thing (and without consciously changing any other factor) I get tired (and, usually, go to bed) an average of 1.5 hours sooner than I would without. It’s great for my purposes, but not everyone will like it, so I would encourage you to try it for yourself if you think that it’s something that could benefit you.</p>
+<p>There’s a version of f.lux for Windows, Linux, Mac, and iOS. I wound up installing Redshift on Arch Linux and it works just as well.<br>Unfortunately there’s no ‘official’ product by f.lux for Android (although they’ve said that they’re working on it), but there’s an app called Easy Eyes that does the same thing. The free version will allow you to trigger the effect on and off manually, but the paid version (less than a cup of coffee) will cycle based on your location just like the other softwares would.</p>
+<p>Like f.lux and similar software? Hate it? Discuss in the comments.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://new.andrewsiemen.com/2014/02/02/software-i-enjoy-f-lux-redshift-easy-eyes/" data-id="ciy247je2000u61bcga9n0di9" class="article-share-link">Share</a>
       
       
     </footer>
@@ -160,6 +647,10 @@
 
   
 
+
+  <nav id="page-nav">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">__('next') &raquo;</a>
+  </nav>
 </section>
         
           <aside id="sidebar">
@@ -168,7 +659,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Uncategorized/">Uncategorized</a></li></ul>
     </div>
   </div>
 
@@ -197,7 +688,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a></li></ul>
     </div>
   </div>
 
@@ -215,6 +706,18 @@
         
           <li>
             <a href="/2017/01/17/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2015/01/31/cve-2015-0235-or-why-i-started-worrying-immediately-and-learned-to-give-up-the-ghost/">CVE-2015-0235, or: why I started worrying immediately and learned to give up the &amp;quot;Ghost&amp;quot;</a>
+          </li>
+        
+          <li>
+            <a href="/2014/12/22/phantom-user-on-arch-using-lvm-and-luks-part-the-first/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2014/03/12/whats-the-big-deal-about-sed-anyways/">What&#39;s the big deal about sed, anyways?</a>
           </li>
         
       </ul>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>What&#39;s the big deal about sed, anyways? | Website Test</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="There comes a time in any young Linux SysAdmin’s life where they have to learn the importance of shell scripting in Bash. One of the more useful commands is one called sed (stream editor).
+sed is desi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="What's the big deal about sed, anyways?">
+<meta property="og:url" content="http://new.andrewsiemen.com/2014/03/12/whats-the-big-deal-about-sed-anyways/index.html">
+<meta property="og:site_name" content="Website Test">
+<meta property="og:description" content="There comes a time in any young Linux SysAdmin’s life where they have to learn the importance of shell scripting in Bash. One of the more useful commands is one called sed (stream editor).
+sed is desi">
+<meta property="og:updated_time" content="2017-01-17T22:44:06.728Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="What's the big deal about sed, anyways?">
+<meta name="twitter:description" content="There comes a time in any young Linux SysAdmin’s life where they have to learn the importance of shell scripting in Bash. One of the more useful commands is one called sed (stream editor).
+sed is desi">
+  
+    <link rel="alternate" href="/atom.xml" title="Website Test" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Website Test</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">The all new andrewsiemen.com!</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://new.andrewsiemen.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-whats-the-big-deal-about-sed-anyways" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/03/12/whats-the-big-deal-about-sed-anyways/" class="article-date">
+  <time datetime="2014-03-12T15:34:53.000Z" itemprop="datePublished">2014-03-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      What&#39;s the big deal about sed, anyways?
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>There comes a time in any young Linux SysAdmin’s life where they have to learn the importance of shell scripting in Bash. One of the more useful commands is one called <strong>sed</strong> (<strong>s</strong>tream <strong>ed</strong>itor).</p>
+<p>sed is designed to take an input (either from stdin or from a file), edit the text of the input, and throw the edited version back out at you (which can then be redirected from stdout to a file). Unlike a text editor, it does this in real time (which means it can be scripted, which is super nifty).</p>
+<p>There’s far more about sed than I could explain in this blog post, but Bruce Barnett does a fantastic job of explaining what sed is and what it can do on <a href="http://www.grymoire.com/Unix/Sed.html" target="_blank" rel="external">this page</a> of his website.</p>
+<p>I find myself using sed all the time because of how powerful it is and all of the things it can do.</p>
+<p>Recently I was faced with the task of taking a log file and converting it into a CSV format. The format of the logfile was the output from ipmitool on an Ubuntu server and the format looked like this:</p>
+<pre>...data data data...
+Mon Mar 10 02:50:06 EDT 2014
+ESM Frt I/O Temp | 31h | ok  | 12.0 | 28 degrees C
+ESM CPU 1 Temp   | 32h | ns  |  3.1 | No Reading
+ESM CPU 2 Temp   | 33h | ns  |  3.2 | No Reading
+ESM Riser Temp   | 34h | ok  | 16.0 | 35 degrees C
+ESM CPU 1 Temp   | 35h | ok  |  3.1 | 34 degrees C
+ESM CPU 2 Temp   | 36h | ok  |  3.2 | 33 degrees C
+BP Bottom Temp   | 03h | ok  | 15.1 | 29 degrees C
+BP Top Temp      | 02h | ok  | 15.1 | 29 degrees C
+Mon Mar 10 02:55:06 EDT 2014
+ESM Frt I/O Temp | 31h | ok  | 12.0 | 28 degrees C
+ESM CPU 1 Temp   | 32h | ns  |  3.1 | No Reading
+ESM CPU 2 Temp   | 33h | ns  |  3.2 | No Reading
+ESM Riser Temp   | 34h | ok  | 16.0 | 35 degrees C
+ESM CPU 1 Temp   | 35h | ok  |  3.1 | 38 degrees C
+ESM CPU 2 Temp   | 36h | ok  |  3.2 | 39 degrees C
+BP Bottom Temp   | 03h | ok  | 15.1 | 29 degrees C
+BP Top Temp      | 02h | ok  | 15.1 | 29 degrees C
+...data data data...</pre>
+In particular we are interested in the dates and the temperatures of each CPU to graph temperatures over time. This log lives in a file called data.txt and we want it to output to a file called data.csv.
+
+Let's see what we can do with this.
+
+First, we want to search for anything with 'Mon' in the name (to filter out the date, if you had a logfile with multiple days instead of just 'monday' you could use the month or even the year number, it just has to be something that is unique to the date string) or for the ID numbers of the sensors that we want to filter. This can be accomplished using grep:
+<pre>grep -E '^Mon*|35h|36h' data.txt</pre>
+Note: the -E allows us to use extended regular expressions, basically allowing us to search for multiple things at once.
+
+This turns the above logfile into:
+<pre>
+...data data data...
+Mon Mar 10 02:50:06 EDT 2014
+ESM CPU 1 Temp   | 35h | ok  |  3.1 | 34 degrees C
+ESM CPU 2 Temp   | 36h | ok  |  3.2 | 33 degrees C
+Mon Mar 10 02:55:06 EDT 2014
+ESM CPU 1 Temp   | 35h | ok  |  3.1 | 38 degrees C
+ESM CPU 2 Temp   | 36h | ok  |  3.2 | 39 degrees C
+...data data data...
+</pre>
+
+<p>Next we want to just take the temperature data from the above output. This is where sed comes in.</p>
+<p>Basically, we want to delete everything up to (and including) the final pipe delimiter and the space immediately after it. The sed command to do this might look similar to the following:</p>
+<pre>sed -r 's/^.+\| //g'</pre>
+
+<p>The -r says to read from a file, which I now realize is a bit unnecessary as the input is being piped in from grep, but the -r was there when I was testing the individual portions because I was reading from the data.txt file, and the script works with the -r option. It works for me, but YMMV.<br>Next comes the regular expression. This is arguably the most important part of the sed command because this is what is going to find the text that you want to replace. Without having this part correct, the sed command is basically rendered useless (or, worse, destructive to other parts of the file that you want to keep intact). General rule: if you’re experimenting with sed and regex, make a copy of the original file. There are some flags that you can set that will overwrite the source file.<br>Anyways, breaking this part down a bit:<br>s/tolookfor/toreplacewith/g says to search for “tolookfor” and to replace it with “toreplacewith.” The ‘g’ at the end means to do this globally, or to change all occurances found.<br>“^.+| “ means to start at the beginning of each string (^), look for any number of occurrences of any character (.+) until you get to a pipe and a space (the backslash is there to escape the pipe character).<br>There is nothing in between the next two slashes, which is the equivalent of s/toolookfor//g. This basically means to replace anything that you find with nothing (ie, delete everything that you find).</p>
+<p>The output of this command when fed the previous output looks like this:</p>
+<pre>
+...data data data...
+Mon Mar 10 02:50:06 EDT 2014
+34 degrees C
+33 degrees C
+Mon Mar 10 02:55:06 EDT 2014
+38 degrees C
+39 degrees C
+...data data data...
+</pre>
+
+<p>We’re starting to get somewhere.</p>
+<p>In some cases, you would want to leave the “degrees C” part in this file, but I already know that this is going to be the unit used (and am going to put it on the graph), so I want to find and get rid of that part, which is what the following sed command does:</p>
+<pre>sed -r 's/ degrees C//g'</pre>
+
+<p>After this second sed command this is what we’re left with:</p>
+<pre>
+...data data data...
+Mon Mar 10 02:50:06 EDT 2014
+34
+33
+Mon Mar 10 02:55:06 EDT 2014
+38
+39
+...data data data...
+</pre>
+
+<p>Now all that is left to do is to turn this into a CSV. This is accomplished using the nifty <strong>paste</strong> command. This is originally used to take two files and join them together using a user-specified delimiter, but can be used to combine things from standard input as well, as follows:</p>
+<pre>paste -d, - - -</pre>
+-d, means to use a comma as a delimiter, and the three dashes mean to read from standard input three times. As the input is delimited by a newline, it will read in three lines at a time and delimit them with commas.
+
+Finally, we have output that looks like this:
+<pre>
+...data data data...
+Mon Mar 10 02:50:06 EDT 2014,34,33
+Mon Mar 10 02:55:06 EDT 2014,38,39
+...data data data...
+</pre>
+
+<p>Combining all of these commands, we end up with the following one-liner:</p>
+<p><pre>grep -E ‘^Mon*|35h|36h’ data.txt | sed -r ‘s/^.+| //g’ | sed -r ‘s/ degrees C//g’ | paste -d, - - - &gt; data.csv</pre><br>(this text might wrap around, but it was originally written as a single line and does work this way)</p>
+<p>This will parse an entire logfile into a CSV that can easily be imported into a program such as Excel for graphing.</p>
+<p>Sed is a powerful command, and it can do lots more than I’ve listed here. For more info on sed, check out the link a bit further up.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://new.andrewsiemen.com/2014/03/12/whats-the-big-deal-about-sed-anyways/" data-id="ciy247je6000x61bcr6t2orkx" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/12/22/phantom-user-on-arch-using-lvm-and-luks-part-the-first/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/03/12/home-network-now-with-visio/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Home Network - now with Visio!</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Uncategorized/">Uncategorized</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/01/17/first-post-hexo/">First post - Hexo!</a>
+          </li>
+        
+          <li>
+            <a href="/2017/01/17/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2015/01/31/cve-2015-0235-or-why-i-started-worrying-immediately-and-learned-to-give-up-the-ghost/">CVE-2015-0235, or: why I started worrying immediately and learned to give up the &amp;quot;Ghost&amp;quot;</a>
+          </li>
+        
+          <li>
+            <a href="/2014/12/22/phantom-user-on-arch-using-lvm-and-luks-part-the-first/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2014/03/12/whats-the-big-deal-about-sed-anyways/">What&#39;s the big deal about sed, anyways?</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Andrew Siemen<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
