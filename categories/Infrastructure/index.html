@@ -10,8 +10,6 @@
 
     <!--Description-->
     
-        <meta name="description" content="Content!">
-    
 
     <!--Author-->
     
@@ -20,7 +18,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="Title Here"/>
+        <meta property="og:title" content="Nerd, Audiophile, Purveyor of Randomness"/>
     
 
     <!--Open Graph Description-->
@@ -31,7 +29,7 @@
 
     <!--Type page-->
     
-        <meta property="og:type" content="article" />
+        <meta property="og:type" content="website" />
     
 
     <!--Page Cover-->
@@ -42,7 +40,7 @@
 
     <!-- Title -->
     
-    <title>Title Here - Nerd, Audiophile, Purveyor of Randomness</title>
+    <title>Infrastructure - Nerd, Audiophile, Purveyor of Randomness</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
@@ -144,86 +142,50 @@
 </nav>
 
     <!-- Main Content -->
-    <!-- Page Header -->
-<!-- Set your background image for this header in your post front-matter: cover -->
+    
 
-<header class="intro-header" style="background-image: url('cover2.png')">
+<!-- Page Header -->
+<!-- Set your background image for this header in the theme's configuration: index_cover -->
+<header class="intro-header" style="background-image: url('/img/cover2.png')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-heading">
-                    <h1>Title Here</h1>
-                    
-                    <h2 class="post-subheading">
-                        For when you just want stuff underneath.
-                    </h2>
-                    
-                    <span class="meta">
-                        <!-- Date and Author -->
-                        
-                        2017-01-18
-                    </span>
+                <div class="site-heading">
+                    <h1>Infrastructure</h1>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Post Content -->
-<article>
-    <div class="container">
-        <div class="row">
-
-            <!-- Tags and categories -->
-           
-                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
-                    
-                        
-
-
-<a href="/tags/Tag/">#Tag</a>
-
-
-                    
-                </div>
-                <div class="col-lg-4 col-md-5 post-categories">
-                    
-                        
-
-<a href="/categories/Uncategorized/">Uncategorized</a>
-
-                    
-                </div>
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             
-
-            <!-- Gallery -->
+                <div class="post-preview">
+    <a href="/2017/02/06/updated-home-network/">
+        <h1 class="post-title archive">
+            My Home Network - 2017 Update
+        </h1>
+    </a>
+    <p class="post-meta archive">
+        <!-- Date and Author -->
+        
+        2017-02-06
+    </p>
+</div>
             
-
-            <!-- Post Main Content -->
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <p>Content!</p>
-
-
-                
-            </div>
-
-            <!-- Comments -->
-            
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    
-    <hr />
-    <h3>Comments:</h3>
-    <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </div>
-
-
-
-                </div>
-            
+            <div class="archive-before-pagination"></div>
+            <ul class="pager">
+    
+    
+</ul>
         </div>
     </div>
-</article>
+</div>
+
+
 
     <!-- Footer -->
     <hr />
@@ -275,7 +237,7 @@
         var dsq = document.createElement('script');
         dsq.type = 'text/javascript';
         dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>

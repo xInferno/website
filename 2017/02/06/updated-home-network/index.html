@@ -10,6 +10,8 @@
 
     <!--Description-->
     
+        <meta name="description" content="As some of you may remember, I’ve posted a couple of blog posts about the evolution of my home network - from my days of running ESXI on an E8400-load">
+    
 
     <!--Author-->
     
@@ -18,7 +20,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="Nerd, Audiophile, Purveyor of Randomness"/>
+        <meta property="og:title" content="My Home Network - 2017 Update"/>
     
 
     <!--Open Graph Description-->
@@ -29,7 +31,7 @@
 
     <!--Type page-->
     
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content="article" />
     
 
     <!--Page Cover-->
@@ -40,7 +42,7 @@
 
     <!-- Title -->
     
-    <title>Tag - Nerd, Audiophile, Purveyor of Randomness</title>
+    <title>My Home Network - 2017 Update - Nerd, Audiophile, Purveyor of Randomness</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
@@ -142,50 +144,114 @@
 </nav>
 
     <!-- Main Content -->
-    
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
 
-<!-- Page Header -->
-<!-- Set your background image for this header in the theme's configuration: index_cover -->
-<header class="intro-header" style="background-image: url('/img/cover2.png')">
+<header class="intro-header" style="background-image: url('cover.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="site-heading">
-                    <h1>#Tag</h1>
+                <div class="post-heading">
+                    <h1>My Home Network - 2017 Update</h1>
+                    
+                    <h2 class="post-subheading">
+                        Oh, how things can change in a few years
+                    </h2>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        2017-02-06
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/Home-Network/">#Home Network</a> <a href="/tags/Software/">#Software</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/Infrastructure/">Infrastructure</a>
+
+                    
+                </div>
             
-                <div class="post-preview">
-    <a href="/2017/01/18/testdraft/">
-        <h1 class="post-title archive">
-            Title Here
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2017-01-18
-    </p>
-</div>
+
+            <!-- Gallery -->
             
-            <div class="archive-before-pagination"></div>
-            <ul class="pager">
-    
-    
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>As some of you may remember, I’ve posted a couple of blog posts about the evolution of my home network - from my days of <a href="http://new.andrewsiemen.com/2014/01/23/about-my-home-network/">running ESXI on an E8400-loaded Dell Desktop</a> up until my few days of running ESXI on a Mac Pro.</p>
+<p>Those days are (mostly) over now, though.</p>
+<p>Nowadays, I have two different sets of “networks” - there’s the stuff that I have external to the world, and there’s stuff that I run on my internal network. I’ll cover both of them here, along with my plans for expansion and/or modification going forward.</p>
+<h2 id="The-‘External’-Network"><a href="#The-‘External’-Network" class="headerlink" title="The ‘External’ Network"></a>The ‘External’ Network</h2><p>For outward-facing services, I used to run a whole bunch of stuff - WordPress, a MediaWiki, a MyTinyTodo, a mercurial repository (back before I switched to using Git for my version-control needs), a file server, a Minecraft server, a mail server, a SSH bastion, and a VPN in order to securely connect to most of this stuff in the backend. These were all running on that Dell desktop out of my apartment at the time. I’m surprised that little machine never caught on fire…</p>
+<p>These days, my web-facing presence is basically limited to this website running on a VPS, and my ZNC bouncer which runs on a different VPS. The carriers I’m using are NodeServ and LetBox, both of which were recommended to me through the forums at lowendbox.com. They’ve been pretty stable for me so far, though the ZNC bouncer VPS is mostly sitting idle… I’ll have to do something about that sometime soon. Drop some ideas in the comments below!</p>
+<h2 id="The-‘Internal’-Network"><a href="#The-‘Internal’-Network" class="headerlink" title="The ‘Internal’ Network"></a>The ‘Internal’ Network</h2><p>This is where things get interesting.</p>
+<p>Because I have more computational horsepower at home, I run a number of services out of my apartment for my own personal use.</p>
+<p>Currently, my home network goes through an Arris Surfboard modem into an Asus router of insignificant model (it’s just kind of there and doing its thing). From there the signal goes through a couple of Belkin powerline adapters (since running an ethernet cable from one side of my apartment to the other really doesn’t make sense) into a dumb switch in my bedroom.</p>
+<p>This is where I connect two repurposed desktop computers that I salvaged and rebuilt. They both have Core i5’s with 32GB of RAM. </p>
+<p>One has a couple of 2TB drives in RAID1 (this is my VM host) and one has 6x4TB drives in a set of 3 mirrored vdevs (10TB total)  which I use as a NAS.</p>
+<p>Instead of ESXI I’m now using KVM for my virtualization platform, and this basically boils down to KVM being what we use at work and me wanting to have some more experience with it.</p>
+<p>The VM host is running CentOS 7, and is hosting VMs for the following services:</p>
+<ul>
+<li>FreeIPA</li>
+<li>Pritunl (for OpenVPN functionality)</li>
+<li>Gitlab</li>
+<li>Sensu</li>
+<li>Puppet</li>
 </ul>
+<p>The NAS box is running FreeNAS and in addition to fileshares is running the following services:</p>
+<ul>
+<li>SabNZBD</li>
+<li>Sonarr</li>
+<li>Couchpotato</li>
+<li>Headphones</li>
+<li>Plex</li>
+</ul>
+<p>I have plans to do many, many more interesting things with my home network setup, including setting up a pfSense firewall, using a UniFi UAP-AC for wifi, and expanding my internal network to include other services that I’m interested in. This could be anything from running a database cluster to setting up my own SAN. Obviously this will require time and extra hardware, but I’d love to learn the technology.</p>
+<p>Questions? Want a network diagram? Drop a comment!</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+    <hr />
+    <h3>Comments:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+                </div>
+            
         </div>
     </div>
-</div>
-
-
+</article>
 
     <!-- Footer -->
     <hr />
@@ -237,7 +303,7 @@
         var dsq = document.createElement('script');
         dsq.type = 'text/javascript';
         dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>
